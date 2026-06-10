@@ -174,6 +174,80 @@ body::after {
 .urgency strong{color:rgba(255,218,100,1);font-weight:700}
 .hg{animation:blink 2s ease-in-out infinite;display:inline-block}
 
+/* ── STEPS ── */
+.steps-section{padding:30px 0 0}
+.section-eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
+  color:var(--p3);text-align:center;margin-bottom:8px;opacity:.85
+}
+.section-title{
+  font-family:var(--grotesk);font-size:clamp(20px,5.5vw,26px);font-weight:700;
+  letter-spacing:-.4px;text-align:center;margin-bottom:22px;line-height:1.2
+}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:16px 18px;
+  transition:border-color .25s ease
+}
+.step:hover{border-color:rgba(168,85,247,.24)}
+.step-num{
+  flex-shrink:0;width:30px;height:30px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--grotesk);font-size:14px;font-weight:700;color:#fff;
+  background:linear-gradient(135deg,var(--p1),var(--p2));
+  box-shadow:0 2px 12px rgba(124,58,237,.4)
+}
+.step-body{display:flex;flex-direction:column;gap:3px;padding-top:2px}
+.step-title{font-family:var(--grotesk);font-size:14.5px;font-weight:600;color:var(--text)}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.55}
+.step-desc b{color:var(--p3);font-weight:600}
+
+/* ── STORY ── */
+.story-section{padding:34px 0 0}
+.story{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:26px 24px;
+  position:relative;overflow:hidden
+}
+.story::before{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:linear-gradient(to bottom,var(--p2),transparent)
+}
+.story p{font-size:14px;line-height:1.7;color:rgba(240,238,255,.72);margin-bottom:13px}
+.story p:last-child{margin-bottom:0}
+.story p b{color:var(--text);font-weight:600}
+.story .accent{color:var(--p3);font-weight:600}
+
+/* ── BEFORE / AFTER ── */
+.ba-section{padding:34px 0 0}
+.ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ba-col{display:flex;flex-direction:column;gap:8px}
+.ba-label{
+  font-family:var(--grotesk);font-size:10px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase
+}
+.ba-label.before{color:var(--muted2)}
+.ba-label.after{color:var(--p3)}
+.ba-img{
+  width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid var(--border)
+}
+.ba-col.is-after .ba-img{
+  border-color:rgba(168,85,247,.4);
+  box-shadow:0 6px 30px rgba(124,58,237,.22)
+}
+.ba-caption{
+  font-size:13px;color:var(--muted);text-align:center;
+  line-height:1.55;margin-top:16px
+}
+.ba-caption b{color:var(--p3);font-weight:600}
+@media(max-width:520px){
+  .ba-grid{gap:8px}
+  .ba-label{font-size:9px;letter-spacing:1.5px}
+}
+
 /* ── REVIEWS ── */
 .reviews-section{padding:28px 0 0}
 
@@ -187,7 +261,6 @@ body::after {
 .r-stars{font-size:12px;color:var(--p3);letter-spacing:.5px}
 .r-count{font-size:11px;color:var(--muted2)}
 
-/* horizontal scroll on mobile */
 .reviews-track{
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
@@ -195,16 +268,10 @@ body::after {
 }
 @media(max-width:520px){
   .reviews-track{
-    display:flex;
-    overflow-x:auto;
-    scroll-snap-type:x mandatory;
-    gap:10px;
-    padding-bottom:8px;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none
+    grid-template-columns:1fr;
+    gap:10px
   }
-  .reviews-track::-webkit-scrollbar{display:none}
-  .rcard{min-width:260px;scroll-snap-align:start;flex-shrink:0}
+  .rcard{min-width:unset}
 }
 
 .rcard{
@@ -227,6 +294,62 @@ body::after {
 }
 .escape-btn:hover{color:var(--muted)}
 
+/* ── FUTURE ACCESS highlight ── */
+.future-access{
+  background:linear-gradient(135deg,rgba(124,58,237,.16),rgba(168,85,247,.08));
+  border:1px solid rgba(168,85,247,.32);
+  border-radius:12px;padding:13px 15px;
+  display:flex;flex-direction:column;gap:5px
+}
+.fa-tag{
+  display:inline-block;width:fit-content;
+  font-family:var(--grotesk);font-size:9.5px;font-weight:800;letter-spacing:1.3px;
+  color:#fff;background:linear-gradient(135deg,var(--p1),var(--p2));
+  padding:3px 9px;border-radius:100px
+}
+.fa-text{font-size:12.5px;line-height:1.55;color:rgba(240,238,255,.72)}
+.fa-text strong{color:var(--p3);font-weight:700}
+
+/* ── STICKY CTA bar ── */
+.sticky-cta{
+  position:fixed;left:0;right:0;bottom:0;z-index:50;
+  background:rgba(12,8,22,.92);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid rgba(168,85,247,.28);
+  padding:11px 16px calc(11px + env(safe-area-inset-bottom));
+  transform:translateY(120%);
+  transition:transform .35s cubic-bezier(.34,1.3,.64,1);
+  box-shadow:0 -8px 30px rgba(0,0,0,.45)
+}
+.sticky-cta.show{transform:translateY(0)}
+.sticky-inner{
+  max-width:500px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:14px
+}
+.sticky-info{display:flex;flex-direction:column;line-height:1.2;min-width:0}
+.sticky-name{font-family:var(--grotesk);font-size:13px;font-weight:600;color:var(--text);white-space:nowrap}
+.sticky-price{display:flex;align-items:baseline;gap:7px;margin-top:2px}
+.sticky-old{font-size:12px;color:var(--muted2);text-decoration:line-through}
+.sticky-new{font-family:var(--grotesk);font-size:17px;font-weight:700;color:var(--p3)}
+.sticky-btn{
+  flex-shrink:0;display:flex;align-items:center;gap:6px;
+  padding:12px 20px;border-radius:10px;
+  background:linear-gradient(135deg,var(--p1),var(--p2));
+  color:#fff;font-family:var(--inter);font-weight:800;font-size:14px;
+  text-decoration:none;white-space:nowrap;
+  box-shadow:0 4px 18px rgba(124,58,237,.5);
+  transition:transform .2s ease
+}
+.sticky-btn:active{transform:scale(.97)}
+
+/* ── 2nd CTA ── */
+.cta2-section{padding:34px 0 0}
+.cta2-line{
+  font-family:var(--grotesk);font-size:18px;font-weight:600;
+  text-align:center;color:var(--text);margin-bottom:14px;letter-spacing:-.3px
+}
+.cta2-sub{font-size:12px;color:var(--muted2);text-align:center;margin-top:11px}
+
 </style>
 </head>
 <body>
@@ -244,20 +367,39 @@ body::after {
         <polyline class="tick" points="16,25 22,31 34,19"/>
       </svg>
     </div>
-    <p class="topbar-title">Tu pack gratuito está listo.</p>
-    <p class="topbar-sub">Encuéntralo en tu cuenta de <b>Whop</b> — disponible ahora mismo.</p>
+    <p class="topbar-title">Ya tienes FreeatorFX.</p>
     <div class="pill"><span class="dot"></span>Acceso activo en Whop</div>
   </div>
 </section>
 
 <div class="div"></div>
 
+<!-- ── BEFORE / AFTER ── -->
+<section class="ba-section">
+  <div class="w">
+    <p class="section-eyebrow reveal">La diferencia</p>
+    <h2 class="section-title reveal">Misma toma. Distinto resultado.</h2>
+    <div class="ba-grid reveal">
+      <div class="ba-col is-before">
+        <span class="ba-label before">Antes</span>
+        <img class="ba-img" src="images/before.png" alt="Sin CreatorFX" loading="lazy">
+      </div>
+      <div class="ba-col is-after">
+        <span class="ba-label after">Después</span>
+        <img class="ba-img" src="images/after.png" alt="Con CreatorFX" loading="lazy">
+      </div>
+    </div>
+    <p class="ba-caption reveal">Grade cinemático + hook de CaptionsFX. <b>Todo con CreatorFX en Premiere Pro.</b></p>
+  </div>
+</section>
+
 <!-- ── UPSELL ── -->
 <section class="upsell">
   <div class="w">
 
-    <h1 class="headline reveal">Mientras estás aquí —<br/><em>una sola cosa.</em></h1>
-    <p class="sub reveal">Los 5 presets gratis son una muestra del sistema. El pack completo tiene todo.</p>
+    <p class="section-eyebrow reveal">El sistema completo</p>
+    <h1 class="headline reveal">Todo lo que viste<br/><em>está aquí adentro.</em></h1>
+    <p class="sub reveal">FreeatorFX son 5 presets. El bundle tiene el resto del sistema: efectos, transiciones y captions.</p>
 
     <div class="bundle reveal">
       <span class="badge">BUNDLE · MEJOR PRECIO</span>
@@ -268,28 +410,42 @@ body::after {
       </div>
 
       <div class="price-row">
-        <span class="price-old">$47</span>
+        <span class="price-old">$35</span>
         <span class="price-new">$29.99</span>
       </div>
 
       <ul class="feats">
-        <li><i class="fi">✦</i><span><strong>CreatorFX</strong> — efectos y animaciones</span></li>
-        <li><i class="fi">✦</i><span><strong>CaptionsFX</strong> — subtítulos animados</span></li>
+        <li><i class="fi">✦</i><span><strong>CreatorFX</strong> · efectos y animaciones</span></li>
+        <li><i class="fi">✦</i><span><strong>CaptionsFX</strong> · subtítulos animados</span></li>
       </ul>
 
+      <div class="future-access">
+        <span class="fa-tag">INCLUIDO PARA SIEMPRE</span>
+        <p class="fa-text"><strong>Todos los packs futuros, gratis.</strong> Compras hoy y recibes EditsFX y cada pack que lance — sin pagar de nuevo.</p>
+      </div>
+
       <a href="https://whop.com/creatorfxstore/the-viral-editing-bundle/" target="_blank" rel="noopener" class="cta">
-        Conseguir el bundle — $29.99 →
+        Conseguir el bundle · $29.99 →
       </a>
 
       <p class="guarantee">Descarga instantánea &nbsp;·&nbsp; Sin suscripción &nbsp;·&nbsp; Para siempre</p>
     </div>
 
     <div class="urgency reveal">
-      <span class="hg">⏳</span>
-      <strong>EditsFX y ColorFX se suman al bundle pronto.</strong>
-      El precio sube con cada pack. Este es el precio de entrada.
+      📈 <strong>Hoy $29.99. Cuando lance EditsFX: $47.</strong><br>
+      El precio sube con cada pack. Pero si entras hoy, los recibes todos sin pagar la diferencia.
     </div>
 
+  </div>
+</section>
+
+<!-- ── STORY (positioning) ── -->
+<section class="story-section">
+  <div class="w">
+    <div class="story reveal">
+      <p>Construí este sistema de presets para mi propio trabajo con marcas como <span class="accent">Mercedes-Benz</span>.</p>
+      <p><b>FreeatorFX es una muestra. El pack completo es el sistema entero.</b></p>
+    </div>
   </div>
 </section>
 
@@ -327,12 +483,66 @@ body::after {
   </div>
 </section>
 
+<!-- ── 2nd CTA ── -->
+<section class="cta2-section">
+  <div class="w">
+    <p class="cta2-line reveal">¿Listo para el sistema completo?</p>
+    <a href="https://whop.com/creatorfxstore/the-viral-editing-bundle/" target="_blank" rel="noopener" class="cta reveal">
+      Conseguir el bundle · $29.99 →
+    </a>
+    <p class="cta2-sub reveal">Sube a $47 cuando lance EditsFX · Acceso a todos los packs futuros</p>
+  </div>
+</section>
+
+<div class="div" style="margin-top:36px"></div>
+
+<!-- ── STEPS (cómo usar tu pack gratis) ── -->
+<section class="steps-section">
+  <div class="w">
+    <p class="section-eyebrow reveal">Tu pack gratis</p>
+    <h2 class="section-title reveal">Cómo usar FreeatorFX</h2>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-title">Descarga el ZIP y mira el video de instalación</p>
+          <p class="step-desc">Dentro de Whop, en <b>Learning / Resources</b>. Son 3 minutos.</p>
+        </div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-title">Úsalos en tu próximo video</p>
+          <p class="step-desc">Arrastra los presets a tu timeline en <b>Premiere Pro</b>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ── ESCAPE ── -->
 <section class="escape">
   <button class="escape-btn" onclick="document.getElementById('top').scrollIntoView({behavior:'smooth'})">
     No gracias, solo quiero los 5 presets gratis por ahora →
   </button>
 </section>
+
+<!-- ── STICKY CTA ── -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-inner">
+    <div class="sticky-info">
+      <span class="sticky-name">Viral Editing Bundle</span>
+      <span class="sticky-price">
+        <span class="sticky-old">$35</span>
+        <span class="sticky-new">$29.99</span>
+      </span>
+    </div>
+    <a href="https://whop.com/creatorfxstore/the-viral-editing-bundle/" target="_blank" rel="noopener" class="sticky-btn">
+      Conseguir →
+    </a>
+  </div>
+</div>
 
 <script>
 const io = new IntersectionObserver(entries => {
@@ -345,6 +555,22 @@ const io = new IntersectionObserver(entries => {
   });
 }, {threshold: 0.08});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* Sticky CTA: show after passing the hero, hide while the main bundle card is on screen */
+const sticky = document.getElementById('stickyCta');
+const bundleCard = document.querySelector('.bundle');
+let bundleVisible = false;
+new IntersectionObserver(es => {
+  bundleVisible = es[0].isIntersecting;
+  updateSticky();
+}, {threshold: 0.25}).observe(bundleCard);
+
+function updateSticky(){
+  const pastHero = window.scrollY > 480;
+  if (pastHero && !bundleVisible) sticky.classList.add('show');
+  else sticky.classList.remove('show');
+}
+window.addEventListener('scroll', updateSticky, {passive:true});
 </script>
 
 </body>
